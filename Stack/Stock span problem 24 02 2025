@@ -1,0 +1,25 @@
+QUESTION : https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
+
+
+ANSWER:
+
+class Solution {
+  public:
+    vector<int> calculateSpan(vector<int>& arr) {
+      stack<int> st;
+      vector<int> ans(arr.size(),1);
+      st.push(0);
+      for(int i=1;i<arr.size();i++){
+          int count=1;
+          int x=0;
+          while(!st.empty()&&arr[st.top()]<=arr[i]){
+              x=i-st.top();
+              st.pop();
+          }
+          count=x+1;
+          ans[i]=count;
+          st.push(i);
+      }
+      return ans;
+    }
+};
